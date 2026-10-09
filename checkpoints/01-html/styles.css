@@ -1,0 +1,11 @@
+body {
+  margin: 2rem;
+  color: #18354a;
+  background: #f7f1e4;
+  font-family: system-ui, sans-serif;
+}
+
+.game-stage {
+  min-height: 280px;
+  border: 3px solid currentColor;
+}
