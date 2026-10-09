@@ -1,6 +1,6 @@
 import { access, readdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
-import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const root = new URL("../checkpoints/", import.meta.url);
 const folders = (await readdir(root, { withFileTypes: true }))
@@ -18,7 +18,7 @@ for (const folder of folders) {
     ["index.html", "styles.css", "app.js"].map((file) => access(new URL(file, directory))),
   );
 
-  const appPath = join(directory.pathname, "app.js");
+  const appPath = fileURLToPath(new URL("app.js", directory));
   const result = spawnSync(process.execPath, ["--check", appPath], { encoding: "utf8" });
   if (result.status !== 0) {
     throw new Error(`${folder}/app.js failed syntax validation:\n${result.stderr}`);
