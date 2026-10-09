@@ -56,6 +56,8 @@ function gameLoop(now) {
       jumping = false;
     }
 
+    // The ground is 42px tall. Add the current jump height to that base
+    // position, then turn the number into a CSS value such as "122px".
     dino.style.bottom = `${42 + jumpHeight}px`;
   }
 
